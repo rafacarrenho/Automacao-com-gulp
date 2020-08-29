@@ -10,7 +10,7 @@ const uglify = require("gulp-uglify");
 // Funçao para compilar o SASS e adicionar os prefixos
 function compilaSass() {
   return gulp
-    .src("css/scss/**/*.scss")
+    .src("dist/css/scss/**/*.scss")
     .pipe(
       sass({
         outputStyle: "compressed",
@@ -21,7 +21,7 @@ function compilaSass() {
         cascade: false,
       })
     )
-    .pipe(gulp.dest("css/"))
+    .pipe(gulp.dest("dist/css/"))
     .pipe(browserSync.stream());
 }
 
@@ -35,7 +35,7 @@ exports.compilaSass = compilaSass;
 // Função para juntar o JS
 function gulpJS() {
   return gulp
-    .src("js/main/**/*.js")
+    .src("dist/js/main/**/*.js")
     .pipe(concat("app.js"))
     .pipe(
       babel({
@@ -43,7 +43,7 @@ function gulpJS() {
       })
     )
     .pipe(uglify())
-    .pipe(gulp.dest("js/"))
+    .pipe(gulp.dest("dist/js/"))
     .pipe(browserSync.stream());
 }
 
@@ -53,12 +53,18 @@ exports.gulpJS = gulpJS;
 // Função para iniciar o browser
 function browser() {
   browserSync.init({
-    // Padrão sem ser WP
-    server: {
-      baseDir: "./",
-    },
-    // Se Wordpress Pegar a URL do site
-    // proxy: "localhost:9000",
+    /*************************\
+    * Padrão sem ser WP
+    \*************************/
+
+    // server: {
+    //   baseDir: "./",
+    // },
+
+    /*************************\
+    * Se Wordpress - Pegar a URL do site 
+    \*************************/
+    proxy: "localhost/DraTania",
   });
 }
 
@@ -67,8 +73,8 @@ exports.browser = browser;
 
 // Função de watch do Gulp
 function watch() {
-  gulp.watch("css/scss/**/*.scss", compilaSass);
-  gulp.watch("js/main/**/*.js", gulpJS);
+  gulp.watch("dist/css/scss/**/*.scss", compilaSass);
+  gulp.watch("dist/js/main/**/*.js", gulpJS);
   gulp
     .watch(["*.php", "./**/*.php", "*.html"])
     .on("change", browserSync.reload);
