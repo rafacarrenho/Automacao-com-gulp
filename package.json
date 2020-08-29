@@ -1,0 +1,27 @@
+{
+  "name": "automacao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RCARRENHO",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.12",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp-babel": "^7.0.1"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 2%"
+  ],
+  "dependencies": {}
+}
