@@ -6,6 +6,7 @@ const browserSync = require("browser-sync").create();
 const concat = require("gulp-concat");
 const babel = require("gulp-babel");
 const uglify = require("gulp-uglify");
+const cache = require("gulp-cache");
 
 // Funçao para compilar o SASS e adicionar os prefixos
 function compilaSass() {
@@ -22,6 +23,7 @@ function compilaSass() {
       })
     )
     .pipe(gulp.dest("dist/css/"))
+    .pipe(cache.clear())
     .pipe(browserSync.stream());
 }
 
@@ -44,6 +46,7 @@ function gulpJS() {
     )
     .pipe(uglify())
     .pipe(gulp.dest("dist/js/"))
+    .pipe(cache.clear())
     .pipe(browserSync.stream());
 }
 
@@ -64,7 +67,7 @@ function browser() {
     /*************************\
     * Se Wordpress - Pegar a URL do site 
     \*************************/
-    proxy: "localhost/DraTania",
+    proxy: "localhost/salute",
   });
 }
 
